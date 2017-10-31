@@ -23,3 +23,14 @@ function checkConfirmation() {
   }
   return true;
 }
+
+function returnResultRegistration() {
+  if (!checkEmail()) {
+    return 'Введите валидный e-mail';
+  } else if (!checkValidPasswords()) {
+    return 'Пароли должны быть неменее 6-ти символов и совпадать.';
+  } else {
+    return 'Примите условия соглашения.';
+  }
+  return true;
+}
