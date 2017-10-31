@@ -1,45 +1,39 @@
 program SearchRndElementInRndArray;
 uses crt;
-const N = 10;
+const SIZE_ARRAY = 10;
+const RANDOM_MAX_BORDER = 15;
 var
-  a: array [1..N] of integer;
-  k: integer;
-  isFound: boolean;
-  i: integer;
+  randomArray : array [1..SIZE_ARRAY + 1] of integer;
+  randomElement : integer;
+  i : integer;
 begin
+  clrscr;
   randomize;
 
-  for i := 1 to N do 
+  for i := 1 to SIZE_ARRAY do
   begin
-    a[i] := Random(15);
+    randomArray[i] := random(RANDOM_MAX_BORDER);
   end;
-  
+
   writeln('Filled random array: ');
-  for i := 1 to N do
+  for i := 1 to SIZE_ARRAY do
   begin
-    write(a[i], ' ');
-  end;  
-  
-  writeln;  
- 
-  k := Random(15);
- 
-  IsFound := False;
-  for i:=1 to N do
-  begin
-    if a[i] = k then 
-    begin
-      IsFound := True;
-      break;
-    end;
+    write(randomArray[i], ' ');
   end;
- 
-  if IsFound then
+  writeln;
+
+  randomElement := random(RANDOM_MAX_BORDER);
+  randomArray[SIZE_ARRAY + 1] := randomElement;
+
+  i := 1;
+  while (randomArray[i] <> randomElement) do
   begin
-    writeln('Element ', k, ' is found!');
-  end  
+    i := i + 1;
+  end;
+  
+  if (i <> SIZE_ARRAY + 1) then
+    writeln('Element ', randomElement, ' is found!') 
   else
-  begin
-    writeln('Element ', k, ' not found');
-  end;  
+    writeln('Element ', randomElement, ' not found');
+  readln;
 end.
