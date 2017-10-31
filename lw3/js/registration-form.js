@@ -34,3 +34,11 @@ function returnResultRegistration() {
   }
   return true;
 }
+
+document.getElementsByClassName("registration-form")[0].onsubmit = function() {
+  if (returnResultRegistration() === true) {
+    alert("Регистрация прошла успешно!");  
+  } else {
+    return false;
+  }
+};
