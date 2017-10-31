@@ -1,7 +1,7 @@
 function checkEmail() {
   var email = document.getElementsByClassName("registration-form__email")[0].value;
   var resultCheck = email.match(/^[0-9a-z-\.]+\@[0-9a-z-]{1,}\.[a-z]{2,}$/i);
-  if (!resultCheck){
+  if (!resultCheck) {
     return false;
   }
   return true;
@@ -26,11 +26,13 @@ function checkConfirmation() {
 
 function returnResultRegistration() {
   if (!checkEmail()) {
-    return 'Введите валидный e-mail';
+    return "Введите валидный e-mail";
   } else if (!checkValidPasswords()) {
-    return 'Пароли должны быть неменее 6-ти символов и совпадать.';
+    return "Пароли должны быть неменее 6-ти символов и совпадать.";
   } else {
-    return 'Примите условия соглашения.';
+    if (!checkConfirmation()) {
+      return "Примите условия соглашения.";
+    }
   }
   return true;
 }
@@ -39,6 +41,7 @@ document.getElementsByClassName("registration-form")[0].onsubmit = function() {
   if (returnResultRegistration() === true) {
     alert("Регистрация прошла успешно!");  
   } else {
+    alert(returnResultRegistration());
     return false;
   }
 };
