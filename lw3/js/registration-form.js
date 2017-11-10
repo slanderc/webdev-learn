@@ -24,24 +24,17 @@ function checkConfirmation() {
   return false;
 }
 
-function returnResultRegistration() {
-  if (!checkEmail()) {
-    return "Введите валидный e-mail";
-  } else if (!checkValidPasswords()) {
-    return "Пароли должны быть неменее 6-ти символов и совпадать.";
-  } else {
-    if (!checkConfirmation()) {
-      return "Примите условия соглашения.";
-    }
-  }
-  return true;
-}
-
 $(".registration-form").submit(function() {
-  if (returnResultRegistration() === true) {
+  if (checkEmail() && checkValidPasswords() && checkConfirmation()) {
     alert("Регистрация прошла успешно!");  
   } else {
-    alert(returnResultRegistration());
+    if (!checkEmail()) {
+      alert('Введите валидный e-mail.');
+    } else if (!checkValidPasswords()) {
+      alert('Пароли должны быть неменее 6-ти символов и совпадать.');
+    } else {
+      alert('Примите условия соглашения.');
+    }
     return false;
   }
 });
