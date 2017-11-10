@@ -11,19 +11,20 @@ do {
   var key = prompt('Enter element:', '');
   var checkFlag = false;
   if (key % 1 != 0) {
-    checkFlag = true;  
+    checkFlag = true; 
   }
   if (checkFlag) {
     alert("Input error! Repeat input."); 
   }
-} while (checkFlag || (key == '') || isNaN(key)
-         || (key == null));
-         
-document.write("<p>Filled random array:</p>");
-document.write("<p>" + randomArray + "</p>");
-         
-if (randomArray.indexOf(parseInt(key)) !== -1) {
-  document.write("<p>This element in random array!</p>"); 
-} else {
-  document.write("<p>This element not in random array.</p>");
+} while (checkFlag || (key == '') || isNaN(key));
+
+if (key != null) {
+  document.write("<p>Filled random array:</p>");
+  document.write("<p>" + randomArray + "</p>");
+       
+  if (randomArray.indexOf(parseInt(key)) !== -1) {
+    document.write("<p>This element in random array!</p>"); 
+  } else {
+    document.write("<p>This element not in random array.</p>");
+  }
 }
