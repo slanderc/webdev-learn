@@ -1,6 +1,6 @@
 'use strict';
 
-const CoffeeMachine = require('../src/js/CoffeeMachine.js');
+const CoffeeMachine = require('../src/js/CoffeeMachine');
 const assert = require('chai').assert;
 
 describe('Метод getCoffeeMenu', function() {
