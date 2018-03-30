@@ -70,3 +70,47 @@ describe('Метод setCash', function() {
     makeTest(arrange.value, arrange.expected);
   });
 });
+
+describe('Метод checkCoffeeNumber', function() {
+  function makeTest(value, expected) {
+    it(`принимает на вход ${value} и должен вернуть ${expected}`, function() {
+      let test = new CoffeeMachine();
+      let actual = test.checkCoffeeNumber(value);
+      assert.equal(expected, actual);
+    });
+  }
+  let arranges = [
+    { value: null, expected: false },
+    { value: undefined, expected: false },
+    { value: -1, expected: false },
+    { value: 4, expected: false },
+    { value: 0, expected: false },
+    { value: 1, expected: true },
+    { value: 2, expected: true },
+    { value: 3, expected: true }
+  ];
+  arranges.forEach(function(arrange, i) {
+    makeTest(arrange.value, arrange.expected);
+  });
+});
+
+describe('Метод checkEnoughMoney', function() {
+  function makeTest(value, expected) {
+    it(`при текущем балансе ${value.balance} и выбраном номере кофе ${value.coffeeNumber} возвращает ${expected}`, function() {
+      let testCoffeMachine = new CoffeeMachine();
+      testCoffeMachine.balance = value.balance;
+      let actual = testCoffeMachine.checkEnoughMoney(value.coffeeNumber - 1);
+      assert.equal(expected, actual);
+    });
+  }
+  let arranges = [
+    { value: { balance: 0, coffeeNumber: 1 }, expected: false },
+    { value: { balance: 2, coffeeNumber: 1 }, expected: false },
+    { value: { balance: 0, coffeeNumber: 3 }, expected: false },
+    { value: { balance: 100, coffeeNumber: 2 }, expected: true },
+    { value: { balance: 20, coffeeNumber: 3 }, expected: true }
+  ];
+  arranges.forEach(function(arrange, i) {
+    makeTest(arrange.value, arrange.expected);
+  });
+});
