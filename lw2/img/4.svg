@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="470px" height="470px" viewBox="0 0 470 470" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46.1 (44463) - http://www.bohemiancoding.com/sketch -->
+    <title>bro_app_about_icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="bro_app_about_icon">
+            <rect id="Rectangle" fill-opacity="0" fill="#000000" x="0" y="0" width="470" height="470"></rect>
+            <circle id="Oval-4" fill-opacity="0.1" fill="#000000" cx="235" cy="235" r="235"></circle>
+            <circle id="Oval-4" fill="#FFFFFF" cx="235" cy="235" r="225"></circle>
+            <path d="M259.941857,259.000269 L259.941857,408.273863 C259.941857,410.961863 248.293184,413.112263 235.031618,413.291463 C222.307683,413.112263 210.121379,410.961863 210.121379,408.273863 L210.121379,259.000269 L87.3622902,138.936273 C85.3909763,136.965073 91.6633385,127.646673 101.340697,117.969874 C111.018056,108.293074 120.516205,102.021074 122.308308,103.992274 L234.852408,213.84187 L347.396507,103.992274 C349.367821,102.021074 358.686759,108.293074 368.364118,117.969874 C378.041477,127.646673 384.493049,136.965073 382.700946,138.936273 L259.941857,259.000269 Z" id="Shape-Copy-2" fill="#FF3333"></path>
+        </g>
+    </g>
+</svg>
