@@ -9,6 +9,7 @@ const ReviewSchema = new Schema({
   },
   discription: {
     type: String,
+    validate: /\S+/,
     required: [true]
   }
 });

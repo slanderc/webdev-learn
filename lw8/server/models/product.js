@@ -5,6 +5,8 @@ const idvalidator = require('mongoose-id-validator');
 const ProductSchema = new Schema({
   name: {
     type: String,
+    validate: /\S+/,
+    unique: [true],
     required: [true]
   }
 });
