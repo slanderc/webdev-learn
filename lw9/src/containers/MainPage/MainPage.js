@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
-import { Container, ListGroup, ListGroupItem, Badge } from 'reactstrap';
-import { NavLink } from 'react-router-dom';
-import './MainPage.css';
-import { ERROR_404, ERROR_500 } from '../../constants/Errors';
+import React, { Component } from 'react'
+import { Container, ListGroup, Badge } from 'reactstrap'
+import './MainPage.css'
+import Product from '../../components/Product/Product'
+import ShowError from '../../components/ShowError/ShowError'
 
 class MainPage extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       error: null,
       isLoaded: false,
       products: []
-    };
+    }
   }
 
   componentDidMount() {
@@ -20,45 +20,49 @@ class MainPage extends Component {
       .then(
         (result) => {
           this.setState({
-            isLoaded: true,
-            products: result
-          });
+            isLoaded: true
+          })
+          if (!Array.isArray(result)) {
+            this.setState({ error: result })
+          } else {
+            this.setState({
+              products: result
+            })
+          }
         },
         (error) => {
           this.setState({
-            isLoaded: true,
+            isLoaded: true, 
             error
-          });
+          })
         }
       )
   }
+
   render() {
-    const { error, isLoaded, products } = this.state;
-    if (error) {
-      return <h1><Badge color="danger">Error: {error.message}</Badge></h1>;
+    const { error, isLoaded, products } = this.state
+    if (error !== null) {
+      return <ShowError error={ JSON.stringify(error)}/>
     } else if (!isLoaded) {
-      return <h1><Badge color="info">Loading...</Badge></h1>;
-    } else if (JSON.stringify(products) === ERROR_404) {
-      return <h1><Badge color="warning">Not found 404!</Badge></h1>;
-    } else if (JSON.stringify(products) === ERROR_500) {
-      return <h1><Badge color="danger">Error 500!</Badge></h1>;
-    } else {
-      return (
-        <Container>
-          <h1><Badge color="success">Products:</Badge></h1>
-          <ListGroup>
-            {products.map(product => (
-              <NavLink className='product' to={`/reviews/${product._id}`}>
-                <ListGroupItem className="text" key={product._id}>
-                  {product.name}
-                </ListGroupItem>
-              </NavLink>
-            ))}
-          </ListGroup>
-        </Container>
-      );
+      return <h1><Badge color='info'>Loading...</Badge></h1>
     }
+    return (
+      <Container>
+        <h1><Badge color='success'>Products:</Badge></h1>
+        <ListGroup>
+          {
+            products.map(product => (
+              <Product
+                productName={ product.name }
+                key={ product._id }
+                link={ `/reviews/${product._id}` }
+              />
+            ))
+          }
+        </ListGroup>
+      </Container>
+    )
   }
 }
 
-export default MainPage;
+export default MainPage

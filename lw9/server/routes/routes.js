@@ -3,99 +3,121 @@ const router = express.Router();
 const Product = require('../models/product');
 const Review = require('../models/review');
 
-router.get('/products', function(req, res, next) {
-  Product.find({}).then(function(products) {
+const ROUTE_PRODUCTS = '/products';
+const ROUTE_PRODUCTS_ID = '/products/:id';
+const ROUTE_REVIEWS = '/reviews';
+const ROUTE_REVIEWS_ID = '/reviews/:id';
+const ROUTE_PRODUCTS_ID_REVIEWS = '/products/:id/reviews';
+
+const ERROR404 = {
+  error: '404 Not Found'
+};
+
+const ERROR500 = {
+  error: '500 Internal Server Error'
+};
+
+router.get(ROUTE_PRODUCTS, (req, res, next) => {
+  Product.find({}).then((products) => {
     res.send(products);
-  }).catch(function(next) {
-    res.send({error: '500'});
+  }).catch((next) => {
+    res.send(ERROR500);
   });
 });
 
-router.get('/products/:id', function(req, res, next) {
-  Product.findOne({_id: req.params.id}).then(function(product) {
+router.get(ROUTE_PRODUCTS_ID, (req, res, next) => {
+  Product.findOne({ _id: req.params.id }).then((product) => {
     res.send(product);
-  }).catch(function(next) {
-    res.send({error: '404'});
+  }).catch((next) => {
+    res.send(ERROR404);
   });
 });
 
-router.post('/products', function(req, res, next) {
-  Product.create(req.body).then(function(product) {
+router.post(ROUTE_PRODUCTS, (req, res, next) => {
+  Product.create(req.body).then((product) => {
     res.send(product);
-  }).catch(function(next) {
-    res.send({error: '500'});
+  }).catch((next) => {
+    res.send(ERROR500);
   });
 });
 
-router.put('/products/:id', function(req, res, next) {
-  Product.findByIdAndUpdate({_id: req.params.id}, req.body).then(function() {
-    Product.findOne({_id: req.params.id}).then(function(product) {
+router.put(ROUTE_PRODUCTS_ID, (req, res, next) => {
+  Product.findByIdAndUpdate({ _id: req.params.id }, req.body)
+  .then(() => {
+    Product.findOne({ _id: req.params.id }).then((product) => {
       res.send(product);
-    }).catch(function(next) {
-      res.send({error: '404'});
+    }).catch((next) => {
+      res.send(ERROR404);
     });
-  }).catch(function(next) {
-    res.send({error: '500'});
+  }).catch((next) => {
+    res.send(ERROR500);
   });
 });
 
-router.delete('/products/:id', function(req, res, next) {
-  Product.findByIdAndRemove({_id: req.params.id}).then(function(product) {
+router.delete(ROUTE_PRODUCTS_ID, (req, res, next) => {
+  Product.findByIdAndRemove({ _id: req.params.id })
+  .then((product) => {
     res.send(product);
-  }).catch(function(next) {
-    res.send({error: '404'});
+  }).catch((next) => {
+    res.send(ERROR404);
   });
 });
 
-router.get('/reviews', function(req, res, next) {
-  Review.find({}).then(function(reviews) {
+router.get(ROUTE_REVIEWS, (req, res, next) => {
+  Review.find({}).then((reviews) => {
     res.send(reviews);
-  }).catch(function(next) {
-    res.send({error: '500'});
+  }).catch((next) => {
+    res.send(ERROR500);
   });
 });
 
-router.get('/reviews/:id', function(req, res, next) {
-  Review.findOne({_id: req.params.id}).then(function(review) {
+router.get(ROUTE_REVIEWS_ID, (req, res, next) => {
+  Review.findOne({ _id: req.params.id }).then((review) => {
     res.send(review);
-  }).catch(function(next) {
-    res.send({error: '404'});
+  }).catch((next) => {
+    res.send(ERROR404);
   });
 });
 
-router.post('/reviews', function(req, res, next) {
-  Review.create(req.body).then(function(review) {
-    res.send(review);
-  }).catch(function(next) {
-    res.send({error: '500'});
-  });
-});
-
-router.put('/reviews/:id', function(req, res, next) {
-  Review.findByIdAndUpdate({_id: req.params.id}, req.body).then(function() {
-    Review.findOne({_id: req.params.id}).then(function(review) {
+router.post(ROUTE_REVIEWS, (req, res, next) => {
+  Product.findOne({ _id: req.body.productId }).then((product) => {
+    Review.create(req.body).then((review) => {
       res.send(review);
-    }).catch(function(next) {
-      res.send({error: '404'});
+    }).catch((next) => {
+      res.send(ERROR500);
     });
-  }).catch(function(next) {
-    res.send({error: '500'});
+  }).catch((next) => {
+    res.send(ERROR404);
+  })
+})
+
+router.put(ROUTE_REVIEWS_ID, (req, res, next) => {
+  Review.findByIdAndUpdate({ _id: req.params.id }, req.body)
+  .then(() => {
+    Review.findOne({_id: req.params.id}).then((review) => {
+      res.send(review);
+    }).catch((next) => {
+      res.send(ERROR404);
+    });
+  }).catch((next) => {
+    res.send(ERROR500);
   });
 });
 
-router.delete('/reviews/:id', function(req, res, next) {
-  Review.findByIdAndRemove({_id: req.params.id}).then(function(review) {
+router.delete(ROUTE_REVIEWS, (req, res, next) => {
+  Review.findByIdAndRemove({ _id: req.params.id })
+  .then((review) => {
     res.send(review);
-  }).catch(function(next) {
-    res.send({error: '404'});
+  }).catch((next) => {
+    res.send(ERROR404);
   });
 });
 
-router.get('/products/:id/reviews', function(req, res, next) {
-  Review.find({productId: req.params.id}).then(function(reviews) {
+router.get(ROUTE_PRODUCTS_ID_REVIEWS, (req, res, next) => {
+  Review.find({ productId: req.params.id }).then((reviews) => {
     res.send(reviews);
-  }).catch(function(next) {
-    res.send({error: '404'});
+  }).catch((next) => {
+    res.send(ERROR404);
   });
 });
 
