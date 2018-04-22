@@ -2,11 +2,11 @@
 
 const CoffeeMachine = require('../src/js/CoffeeMachine');
 const assert = require('chai').assert;
-
+let test = new CoffeeMachine();
+let testCoffeMachine = new CoffeeMachine();
 describe('Метод getCoffeeMenu', function() {
   it(`Выводить в консоли кофе меню, ошибок не ожидается`, function() {
     assert.doesNotThrow(function() {
-      let test = new CoffeeMachine();
       test.getCoffeeMenu();
     });
   });
@@ -15,7 +15,6 @@ describe('Метод getCoffeeMenu', function() {
 describe('Метод checkCash', function() {
   function makeTest(value, expected) {
     it(`принимает на вход ${value} и должен вернуть ${expected}`, function() {
-      let test = new CoffeeMachine();
       let actual = test.checkCash(value);
       assert.equal(expected, actual);
     });
@@ -46,7 +45,6 @@ describe('Метод checkCash', function() {
 describe('Метод setCash', function() {
   function makeTest(value, expected) {
     it(`добавляет ${value.cash} к текущему балансу ${value.balance}, баланс должен быть: ${expected}`, function() {
-      let test = new CoffeeMachine();
       test.currentBalance = value.balance;
       test.setCash(value.cash);
       let actual = test.currentBalance;
@@ -74,7 +72,6 @@ describe('Метод setCash', function() {
 describe('Метод checkCoffeeNumber', function() {
   function makeTest(value, expected) {
     it(`принимает на вход ${value} и должен вернуть ${expected}`, function() {
-      let test = new CoffeeMachine();
       let actual = test.checkCoffeeNumber(value);
       assert.equal(expected, actual);
     });
@@ -97,7 +94,6 @@ describe('Метод checkCoffeeNumber', function() {
 describe('Метод checkEnoughMoney', function() {
   function makeTest(value, expected) {
     it(`при текущем балансе ${value.balance} и выбраном номере кофе ${value.coffeeNumber} возвращает ${expected}`, function() {
-      let testCoffeMachine = new CoffeeMachine();
       testCoffeMachine.balance = value.balance;
       let actual = testCoffeMachine.checkEnoughMoney(value.coffeeNumber - 1);
       assert.equal(expected, actual);
@@ -118,7 +114,6 @@ describe('Метод checkEnoughMoney', function() {
 describe('Метод chooseCoffee', function() {
   function makeTest(value, expected) {
     it(`при текущем балансе ${value.balance} и выбраном номере кофе ${value.coffeeNumber} должен вернуть ${expected}`, function() {
-      let testCoffeMachine = new CoffeeMachine();
       testCoffeMachine.balance = value.balance;
       let actual = testCoffeMachine.chooseCoffee(value.coffeeNumber);
       assert.equal(expected, actual);
@@ -142,7 +137,6 @@ describe('Метод chooseCoffee', function() {
 describe('Метод getRemainCash', function() {
   function makeTest(value, expected) {
     it(`при балансе ${value.balance} и выбраном номере кофе ${value.coffee} сдача должена быть: ${expected}`, function() {
-      let testCoffeMachine = new CoffeeMachine();
       testCoffeMachine.balance = value.balance;
       testCoffeMachine.coffeeNumber = value.coffee;
       let actual = testCoffeMachine.getRemainCash();
@@ -165,7 +159,6 @@ describe('Метод getRemainCash', function() {
 describe('Метод calculateRemain', function() {
   function makeTest(value, expected) {
     it(`при балансе ${value.balance} и выбраном номере кофе ${value.coffee} сдача должена быть: ${expected}`, function() {
-      let testCoffeMachine = new CoffeeMachine();
       testCoffeMachine.balance = value.balance;
       testCoffeMachine.coffeeNumber = value.coffee;
       let actual = testCoffeMachine.calculateRemain();
