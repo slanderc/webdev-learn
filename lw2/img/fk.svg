@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 300 300" style="enable-background:new 0 0 300 300;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#03A603;}
+	.st1{fill:#F0ECDC;}
+</style>
+<title>connect_wiki_icon</title>
+<desc>Created with Sketch.</desc>
+<g id="Test">
+	<g id="connect_wiki_icon">
+		<g id="Group-11" transform="translate(80.000000, 77.000000)">
+			<path class="st0" d="M132,58V16H90c0-8.8-7.2-16-16-16S58,7.2,58,16H16v42C7.2,58,0,65.2,0,74s7.2,16,16,16v42h42
+				c0-8.8,7.2-16,16-16s16,7.2,16,16h42V90c-8.8,0-16-7.2-16-16S123.2,58,132,58z"/>
+			<rect id="Rectangle-7" x="40" y="42" class="st1" width="60" height="8"/>
+			<rect id="Rectangle-7_1_" x="40" y="63" class="st1" width="60" height="8"/>
+			<polygon id="Rectangle-7_2_" class="st1" points="40,84 70,84 70,92 40,92 			"/>
+		</g>
+	</g>
+</g>
+</svg>
