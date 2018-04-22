@@ -4,13 +4,7 @@ const CoffeeMachine = require('../src/js/CoffeeMachine');
 const assert = require('chai').assert;
 let test = new CoffeeMachine();
 let testCoffeMachine = new CoffeeMachine();
-describe('Метод getCoffeeMenu', function() {
-  it(`Выводить в консоли кофе меню, ошибок не ожидается`, function() {
-    assert.doesNotThrow(function() {
-      test.getCoffeeMenu();
-    });
-  });
-});
+
 
 describe('Метод checkCash', function() {
   function makeTest(value, expected) {
